@@ -31,7 +31,7 @@ public class StudentFormTest extends TastBase implements HelperStudent {
                 .email("sarah@mail.com")
                 .gender(Gender.FEMALE)
                 .phone("1234567890")
-                .birthday("6 29 2000")
+                .birthday("6 14 2000")
                 .subjects("Maths,Physics,Accounting,English")
                 .hobbies(hobbies)
                 .address("Main street, 5")

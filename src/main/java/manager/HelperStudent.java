@@ -6,11 +6,13 @@ import model.Hobby;
 import model.StudentDTO;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 
 import java.util.List;
 
 public interface HelperStudent extends HelperBase{
+
 
     default void selectForms() {
         if (isElementPresent(By.id("adplus-anchor"))) {
@@ -96,8 +98,15 @@ public interface HelperStudent extends HelperBase{
         // 06 29 2000
         String[] split = day.split(" ");
         click(By.id("dateOfBirthInput"));
-        new Select(WD.findElement(By.className("react-datepicker__month-select"))).selectByValue(split[0]);
+        new Select(WD.findElement(By.className("react-datepicker__month-select"))).selectByValue(""+(Integer.parseInt(split[0])-1));
         new Select(WD.findElement(By.className("react-datepicker__year-select"))).selectByValue(split[2]);
-        click(By.xpath("//div[.='" + split[1] + "']"));
+        By data=By.xpath("//div[.='" + split[1] + "']");
+        List<WebElement> datas = WD.findElements(data);
+        if(datas.size()>1 && Integer.parseInt(split[1])>15){
+            datas.get(1).click();
+        }else {
+            datas.get(0).click();
+        }
+       // click(data);
     }
 }
